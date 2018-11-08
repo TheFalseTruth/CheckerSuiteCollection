@@ -23,8 +23,8 @@ class CheckerSuite(unittest.TestCase):
 
     def test_redeclared_variable_3(self):
 
-        input = """
-                   procedure main(a:integer);
+        input = """procedure main(); begin end
+                   procedure notmain(a:integer);
                    var a:integer;
                    begin return; end"""
         expect = "Redeclared Variable: a"
@@ -33,7 +33,7 @@ class CheckerSuite(unittest.TestCase):
     def test_redeclared_variable_4(self):
 
         input = """procedure main(); begin end
-                   procedure Main(a:integer ; a:integer);
+                   procedure notMain(a:integer ; a:integer);
                    begin return; end"""
         expect = "Redeclared Parameter: a"
         self.assertTrue(TestChecker.test(input,expect,4))
@@ -51,7 +51,7 @@ class CheckerSuite(unittest.TestCase):
     def test_redeclared_variable_6(self):
 
         input = """procedure main(); begin end
-                   procedure Main(a,a:integer);
+                   procedure notMain(a,a:integer);
                    begin return; end"""
         expect = "Redeclared Parameter: a"
         self.assertTrue(TestChecker.test(input,expect,6))
@@ -1022,7 +1022,7 @@ class CheckerSuite(unittest.TestCase):
 
     def test_case_sensitive_2(self):
         input = """ procedure main(); begin end
-                    procedure Main(AbC :integer);
+                    procedure notMain(AbC :integer);
                     var AbC : real;
                     begin end
 
@@ -1043,7 +1043,7 @@ class CheckerSuite(unittest.TestCase):
 
     def test_case_sensitive_4(self):
         input = """ procedure main(); begin end
-                    procedure Main(abc :integer);
+                    procedure notMain(abc :integer);
                     begin
                         abc := 1;
                         break;
@@ -1200,8 +1200,11 @@ class CheckerSuite(unittest.TestCase):
                     var foo:integer;
                     begin
                         foo(1)[foo(1)[2]] := foo;
-                    end        """
-        expect = "No entry point"
+                    end
+
+                    procedure main();
+                    begin end        """
+        expect = "Undeclared Function: foo"
         self.assertTrue(TestChecker.test(input,expect,91))
 
     def test_callexpr_2(self):
@@ -1330,12 +1333,12 @@ class CheckerSuite(unittest.TestCase):
                     begin return n >= 0; end
 
                     procedure notMain();
-                    var n:integer; diff:real;
+                    var n:integer; difference:real;
                     begin
                         n := 5;
-                        diff := diff(square(addBy1(n)) , square(minusBy1(n)));
-                        putFloatLn(diff);
-                        putBoolLn(isPositive(diff));
+                        difference := diff(square(addBy1(n)) , square(minusBy1(n)));
+                        putFloatLn(difference);
+                        putBoolLn(isPositive(difference));
                     end"""
         expect = "No entry point"
         self.assertTrue(TestChecker.test(input,expect,97))

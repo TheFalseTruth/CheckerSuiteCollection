@@ -385,7 +385,7 @@ class CheckerSuite(unittest.TestCase):
                     return 1;
                 end
                 """
-        expect = 'Type Mismatch In Statement: For(Id(a)IntLiteral(1),FloatLiteral(5.0),True,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
+        expect = 'Type Mismatch In Statement: For(Id(a),IntLiteral(1),FloatLiteral(5.0),True,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
         self.assertTrue(TestChecker.test(input,expect,426))
     def test_tp_mismtch_in_stmt_7(self):
         input = """
@@ -403,7 +403,7 @@ class CheckerSuite(unittest.TestCase):
                     return 1;
                 end
                 """
-        expect = 'Type Mismatch In Statement: For(Id(a)BinaryOp(/,UnaryOp(-,IntLiteral(1)),IntLiteral(2)),IntLiteral(5),True,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
+        expect = 'Type Mismatch In Statement: For(Id(a),BinaryOp(/,UnaryOp(-,IntLiteral(1)),IntLiteral(2)),IntLiteral(5),True,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
         self.assertTrue(TestChecker.test(input,expect,427))
     def test_tp_mismtch_in_stmt_8(self):
         input = """
@@ -421,7 +421,7 @@ class CheckerSuite(unittest.TestCase):
                     return 1;
                 end
                 """
-        expect = 'Type Mismatch In Statement: For(Id(a)IntLiteral(8),Id(c),False,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
+        expect = 'Type Mismatch In Statement: For(Id(a),IntLiteral(8),Id(c),False,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
         self.assertTrue(TestChecker.test(input,expect,428))
     def test_tp_mismtch_in_stmt_9(self):
         input = """
@@ -439,7 +439,7 @@ class CheckerSuite(unittest.TestCase):
                     return 1;
                 end
                 """
-        expect = 'Type Mismatch In Statement: For(Id(a)CallExpr(Id(foo),[IntLiteral(8)]),IntLiteral(2),False,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
+        expect = 'Type Mismatch In Statement: For(Id(a),CallExpr(Id(foo),[IntLiteral(8)]),IntLiteral(2),False,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
         self.assertTrue(TestChecker.test(input,expect,429))
     def test_tp_mismtch_in_stmt_10(self):
         input = """
@@ -460,7 +460,7 @@ class CheckerSuite(unittest.TestCase):
                     return 1;
                 end
                 """
-        expect = 'Type Mismatch In Statement: For(Id(a)IntLiteral(7),IntLiteral(2),False,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
+        expect = 'Type Mismatch In Statement: For(Id(a),IntLiteral(7),IntLiteral(2),False,[CallStmt(Id(putIntLn),[IntLiteral(1)])])'
         self.assertTrue(TestChecker.test(input,expect,430))
     def test_tp_mismtch_in_stmt_11(self):
         input = """
